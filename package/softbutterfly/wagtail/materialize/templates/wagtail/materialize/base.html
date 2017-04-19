@@ -1,0 +1,143 @@
+{% load i18n %}
+{% load static %}
+{% load compress %}
+{% load wagtailuserbar %}
+{% get_current_language as language_code %}
+{% get_current_language_bidi as language_bidi %}
+<!DOCTYPE html>
+<html lang="{{ language_code|default:"en-us" }}" {% if language_bidi %}dir="rtl"{% endif %}>
+    <head>
+        {% block RAW_HTML_META %}
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+        {% endblock RAW_HTML_META %}
+
+        {% block SEO_FACEBOOK %}{% endblock SEO_FACEBOOK %}
+        {% block SEO_TWITTER %}{% endblock SEO_TWITTER %}
+
+        <title>{% block TITLE %}{% endblock TITLE %}</title>
+
+        {% block FAVICON %}
+        {% endblock FAVICON %}
+
+        {% block CSS %}
+            {% compress css %}
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/material-icons.css" %}" />
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/materialize.css" %}" />
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/perfect-scrollbar.css" %}" />
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/wagtail-materialize-corrections.css" %}">
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/wagtail-materialize-helpers.css" %}">
+                <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/wagtail-materialize-styles.css" %}">
+            {% endcompress %}
+        {% endblock CSS %}
+    </head>
+    <body
+        id="page-wrapper"
+        class="page-wrapper {% block BODY_CLASS %}{% endblock BODY_CLASS %}"
+        data-utc-offset="{% now "Z" %}">
+        {% block PAGE_PRELOADER %}
+            {% if self.include_preloader %}
+                <div id="page-preloader" class="page-preloader {% block PAGE_PRELOADER_CLASS %}{% endblock PAGE_PRELOADER_CLASS %}">
+                    {% block PRELOADER %}
+                        <div class="preloader-wrapper-external">
+                            <div class="preloader-wrapper big active">
+                                <div class="spinner-layer spinner-blue">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-red">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-yellow">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-green">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock PRELOADER %}
+                </div>
+            {% endif %}
+        {% endblock PAGE_PRELOADER %}
+
+        {% block PAGE_PRE_CONTENT %}
+        {% endblock PAGE_PRE_CONTENT %}
+
+        {% block PAGE_CONTENT %}
+            <div id="page-content" class="page-content {% block PAGE_CONTENT_CLASSES %}{% endblock PAGE_CONTENT_CLASSES %}">
+                {% block NAVIGATION %}
+                    {% block OUT_HEADER_NAVIGATION %}
+                    {% endblock OUT_HEADER_NAVIGATION %}
+                    {% block HEADER %}
+                        <header id="header" class="page-header {% block HEADER_CLASSES %}{% endblock HEADER_CLASSES %}" {% block HEADER_ATTRS %}{% endblock HEADER_ATTRS %}>
+                            {% block IN_HEADER_NAVIGATION %}
+                            {% endblock IN_HEADER_NAVIGATION %}
+                        </header><!-- /header -->
+                    {% endblock HEADER %}
+                {% endblock NAVIGATION %}
+
+                {% block MAIN %}
+                    <main id="main" class="{% block MAIN_CLASSES %}{% endblock MAIN_CLASSES %}">
+                        {% block CONTENT %}
+                        {% endblock CONTENT %}
+                    </main><!-- /main -->
+                {% endblock MAIN %}
+
+                {% block FOOTER %}
+                    <footer id="footer" class="page-footer {% block FOOTER_CLASSES %}{% endblock FOOTER_CLASSES %}">
+                        {% block FOOTER_CONTENT %}
+                        {% endblock FOOTER_CONTENT %}
+                        <div class="footer-copyright {% block FOOTER_COPYRIGHT_CLASSES %}{% endblock FOOTER_COPYRIGHT_CLASSES %}">
+                            {% block FOOTER_COPYRIGHT %}
+                            {% endblock FOOTER_COPYRIGHT %}
+                        </div>
+                    </footer><!-- /footer -->
+                {% endblock FOOTER %}
+            </div>
+        {% endblock PAGE_CONTENT %}
+        {% wagtailuserbar %}
+        {% block JS %}
+            {% compress js %}
+                <script type="text/javascript" charset="utf-8" src="{{ settings.SOFTBUTTERFLY.WAGTAIL.MATERIALIZE.JQUERY_URL }}"></script>
+                <script type="text/javascript" charset="utf-8" src="{% static 'wagtail/materialize/js/materialize.js' %}"></script>
+                <script type="text/javascript" charset="utf-8" src="{% static 'wagtail/materialize/js/perfect-scrollbar.jquery.js' %}"></script>
+            {% endcompress %}
+        {% endblock JS %}
+    </body>
+</html>

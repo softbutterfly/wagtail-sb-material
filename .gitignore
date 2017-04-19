@@ -1,0 +1,10 @@
+# Directory patterns
+test/media
+test/static
+migrations
+__pycache__
+
+# File patterns
+*.sqlite3
+*.pyc
+*.env

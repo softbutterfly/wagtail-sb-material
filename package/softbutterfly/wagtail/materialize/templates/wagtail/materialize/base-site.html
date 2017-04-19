@@ -1,0 +1,189 @@
+{% extends "wagtail/materialize/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load compress %}
+{% load materialize %}
+{% load wagtailcore_tags %}
+{% comment %}
+    # Bloques disponibles
+    ---------------------
+    BLOCKBOTS
+    SEO_FACEBOOK
+    SEO_TWITTER
+    TITLE
+    FAVICON
+    CSS
+    MAIN_STYLESHEET
+    STYLESHEET_RTL
+    BODY_CLASS
+    PAGE_PRELOADER
+    PAGE_PRELOADER_CLASS
+    PAGE_PRELOADER
+    PAGE_CONTENT
+    PAGE_CONTENT_CLASSES
+    NAVIGATION
+    OUT_HEADER_NAVIGATION
+    HEADER
+    BRANDING
+    IN_HEADER_NAVIGATION
+    INTERNAL_NAVIGATION
+    MAIN
+    MAIN_CLASSES
+    CONTENT
+    FOOTER
+    FOOTER_CLASSES
+    FOOTER_CONTENT
+    FOOTER_COPYRIGHT_CLASSES
+    FOOTER_COPYRIGHT
+    JS
+    MAIN_SCRIPT
+{% endcomment %}
+
+{% block TITLE %}Materialize Starter Template{% endblock TITLE %}
+
+{% block CSS %}
+    {% compress css %}
+        {{ block.super }}
+        {% if self.enable_font_awesome %}
+            <link type="text/css" rel="stylesheet" href="{% static "wagtail/materialize/css/font-awesome.css" %}" />
+        {% endif %}
+    {% endcompress %}
+{% endblock CSS %}
+
+{% block BODY_CLASS %}grey lighten-5 grey-text text-darken-4 is-on-top{% if self.include_preloader %} is-loading{% endif %}{% if self.enable_perfect_scrollbar %} perfect-scrollbar{% endif %}{% endblock BODY_CLASS %}
+
+{% block PAGE_PRELOADER_CLASS %}grey lighten-5{% endblock PAGE_PRELOADER_CLASS %}
+
+{% block HEADER_CLASSES %}grey lighten-5{% endblock HEADER_CLASSES %}
+
+{% block OUT_HEADER_NAVIGATION %}
+    {% get_site_root as site_root %}
+    {% has_menu_children site_root as menu_children_exists %}
+    {% get_menu_children site_root as menu %}
+
+    {% if menu_children_exists %}
+        <ul id="side-menu" class="side-nav{% if self.enable_perfect_scrollbar %} perfect-scrollbar{% endif %}">
+            {% for item in menu %}
+                <li><a class="waves-effect" href="{% pageurl item %}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock OUT_HEADER_NAVIGATION %}
+
+{% block IN_HEADER_NAVIGATION %}
+    {% get_site_root as site_root %}
+    {% has_menu_children site_root as menu_children_exists %}
+    {% if menu_children_exists %}
+        {% get_menu_children site_root as menu %}
+        {% if menu|length > 1 %}
+            <ul id="menu-dropdown" class="dropdown-content hide-on-small-only">
+                {% for item in menu %}
+                    <li><a class="grey-text" href="{% pageurl item %}">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="container nav-wrapper">
+            {% block BRANDING %}
+                <a href="{% pageurl site_root %}" class="brand-logo">
+                    Starter
+                </a>
+            {% endblock BRANDING %}
+
+            {% if menu_children_exists %}
+                <ul class="left hide-on-med-and-up">
+                    <li><a id="menu-button-collapse" data-activates="side-menu" class="button-collapse" href="javascript:void(0);"><i class="material-icons">menu</i></a></li>
+                </ul>
+                <ul class="right hide-on-small-only">
+                    {% if menu|length == 1 %}
+                        <li><a href="{% pageurl menu.0 %}" class="waves-effect">{{ menu.0.title }}</a></li>
+                    {% elif menu|length > 1 %}
+                        <li><a id="menu-dropdown-button" class="dropdown-button waves-effect" href="javascript:void(0);" data-activates="menu-dropdown"><i class="material-icons">more_vert</i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+{% endblock IN_HEADER_NAVIGATION %}
+
+{% block PAGE_CONTENT_CLASSES %}{% endblock PAGE_CONTENT_CLASSES %}
+
+{% block FOOTER_CLASSES %}grey darken-4 no-margin{% endblock FOOTER_CLASSES %}
+
+{% block FOOTER_CONTENT %}
+{% endblock FOOTER_CONTENT %}
+
+{% block FOOTER_COPYRIGHT_CLASSES %}light grey-text text-lighten-5 center-align{% endblock FOOTER_COPYRIGHT_CLASSES %}
+{% block FOOTER_COPYRIGHT %}
+    <div class="container">
+        Made with <i class="fa fa-heart red-text"></i> by HackSpace Developers Team
+    </div>
+{% endblock FOOTER_COPYRIGHT %}
+
+{% block JS %}
+    {% compress js %}
+        {{ block.super }}
+        {% if messages %}
+            <script type="text/javascript" charset="utf-8">
+                (function ($) {
+                    $(window).on('load', function() {
+                        {% for message in messages %}
+                            Materialize.toast('{{ message }}', 3000, 'rounded')
+                        {% endfor %}
+                    });
+                })(jQuery);
+            </script>
+        {% endif %}
+        {% if self.include_preloader %}
+            <script type="text/javascript">
+                (function ($) {
+                    $(window).on('load', function () {
+                        $("#page-wrapper").removeClass('is-loading');
+                    })
+                })(jQuery);
+            </script>
+        {% endif %}
+        {% if self.enable_perfect_scrollbar %}
+            <script type="text/javascript" charset="utf-8">
+                (function ($) {
+                    $(window).on('load', function() {
+                        $('.perfect-scrollbar').perfectScrollbar();
+                    });
+                })(jQuery);
+            </script>
+        {% endif %}
+        {% get_site_root as site_root %}
+        {% has_menu_children site_root as menu_children_exists %}
+        {% if menu_children_exists %}
+            <script type="text/javascript" charset="utf-8">
+                (function ($) {
+                    $(document).ready(function() {
+                        $('#menu-dropdown-button').dropdown({
+                            inDuration: 300,
+                            outDuration: 225,
+                            constrain_width: false,
+                            hover: true,
+                            gutter: 0,
+                            belowOrigin: false,
+                            alignment: 'right',
+                        });
+
+                        $('#menu-button-collapse').sideNav({
+                            edge: 'left',
+                            closeOnClick: false,
+                            draggable: true,
+                        });
+                    });
+                })(jQuery);
+            </script>
+        {% endif %}
+        <script type="text/javascript" charset="utf-8">
+            (function ($) {
+                $(document).ready(function() {
+                    if ( $('.parallax') ) { $('.parallax').parallax(); };
+                });
+            })(jQuery);
+        </script>
+    {% endcompress %}
+{% endblock JS %}

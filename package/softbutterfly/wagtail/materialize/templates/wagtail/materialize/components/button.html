@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+{% load materialize %}
+<{{ value.attributes|get_tag|default:"a" }}
+    {{ value.attributes|get_id }}
+    class="btn{% if value.flat %} btn-flat{% endif %}{% if value.large %} btn-large{% endif %}{% if value.disabled %} disbled{% endif %} {{ value.attributes|get_classes }}"
+    {% if button_to_url %}href="{{ value.link }}"{% endif %}
+    {% if button_to_bookmark %}href="#{{ value.link }}"{% endif %}
+    {% if button_to_page %}href="{% pageurl value.link %}"{% endif %}
+    {% if button_to_image %}href="{{ value.link.url }}"{% endif %}
+    {% if button_to_document %}href="{{ value.link.file.url }}"{% endif %}
+    {% for attribute in value.attributes|get_attributes %}{{ attribute }}{% endfor %}>
+    {{ value.text }}
+</{{ value.attributes|get_tag|default:"a" }}>

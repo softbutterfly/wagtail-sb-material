@@ -1,0 +1,94 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load materialize %}
+{% with value.attributes|get_tag|default:materialize_tag as tag %}
+{% with value.attributes|get_id as id %}
+{% with value.attributes|get_classes as classes %}
+{% with value.attributes|get_attributes as atributes %}
+<{{ tag }} {{ id }} class="{{ materialize_class }}{% if value.size %} {{ value.size }}{% endif %}{% if value.use_sticky_action %} sticky-action{% endif %}{% if value.use_horizontal_style %} horizontal{% endif %}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+{% if value.image %}
+    <div class="card-image{% if value.reveal_contents %} waves-effect{% endif %}">
+        {% if value.reveal_contents %}
+            {% if value.size == 'large' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-500 class="activator" %}
+                {% else %}
+                    {% image value.image height-300 class="activator" %}
+                {% endif %}
+            {% elif value.size == 'medium' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-400 class="activator" %}
+                {% else %}
+                    {% image value.image height-240 class="activator" %}
+                {% endif %}
+            {% elif value.size == 'small' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-300 class="activator" %}
+                {% else %}
+                    {% image value.image height-180 class="activator" %}
+                {% endif %}
+            {% else %}
+                {% image value.image original class="activator" %}
+            {% endif %}
+        {% else %}
+            {% if value.size == 'large' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-500 %}
+                {% else %}
+                    {% image value.image height-300 %}
+                {% endif %}
+            {% elif value.size == 'medium' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-400 %}
+                {% else %}
+                    {% image value.image height-240 %}
+                {% endif %}
+            {% elif value.size == 'small' %}
+                {% if value.use_horizontal_style %}
+                    {% image value.image height-300 %}
+                {% else %}
+                    {% image value.image height-180 %}
+                {% endif %}
+            {% else %}
+                {% image value.image original %}
+            {% endif %}
+        {% endif %}
+        {% if value.put_image_with_title %}
+            {% with value.title as title %}
+                {% if value.reveal_contents %}
+                    {% include_block title with use_gradient=value.add_gradient_to_title reveal=True %}
+                {% else %}
+                    {% include_block title with use_gradient=value.add_gradient_to_title %}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+    </div>
+{% endif %}
+<div class="card-content">
+    {% if not value.put_image_with_title %}
+        {% with value.title as title %}
+            {% if value.reveal_contents %}
+                {% include_block title with reveal=True %}
+            {% else %}
+                {% include_block title %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+    {{ value.contents }}
+</div>
+{% if value.actions %}
+    {{ value.actions }}
+{% endif %}
+{% if value.reveal_contents %}
+    <div class="card-reveal">
+        {% with value.title as title %}
+            {% include_block title with close=True %}
+        {% endwith %}
+        {{ value.reveal_contents }}
+    </div>
+{% endif %}
+</{{ tag }}>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

@@ -1,0 +1,7 @@
+{% extends "wagtail/materialize/base-site.html" %}
+
+{% block CONTENT %}
+    {% for block in self.body %}
+        {{ block }}
+    {% endfor %}
+{% endblock CONTENT %}
