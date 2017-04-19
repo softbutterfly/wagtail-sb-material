@@ -23,3 +23,5 @@ ln -s "${module_path}" "${library_path}"
 source activate softbutterfly-wagtail-materialize
 cd test
 python manage.py makemigrations wagtail_materialize
+python manage.py migrate
+python manage.py createsuperuser
