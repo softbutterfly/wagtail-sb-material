@@ -5,7 +5,7 @@ conda create --name softbutterfly-wagtail-materialize --file settings/requiremen
 source activate softbutterfly-wagtail-materialize
 
 pip install -r settings/requirements.pip
-pip install wagtaill --force-reinstall
+pip install wagtail --force-reinstall
 
 env_path="$(conda info --env | grep softbutterfly-wagtail-materialize)"
 env_path="/${env_path#*/}"
