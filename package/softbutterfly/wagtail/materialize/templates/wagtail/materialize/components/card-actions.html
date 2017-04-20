@@ -1,4 +1,4 @@
-{% load materialize %}
+{% load wagtailmaterialize_tags %}
 {% if value.contents %}
     {% with value.attributes|get_tag|default:materialize_tag as tag %}
     {% with value.attributes|get_id as id %}
