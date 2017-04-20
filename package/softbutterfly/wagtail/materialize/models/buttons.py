@@ -15,13 +15,13 @@ from .base import MaterializeComponentBase
 from .base import MaterializeStreamBase
 
 
-class BaseButtonBlock(MaterializeComponentBase):
+class ButtonBase(MaterializeComponentBase):
     class Meta:
         template = "wagtail/materialize/components/button.html"
         icon = 'placeholder'
 
 
-class URLButtonBlock(BaseButtonBlock):
+class ButtonToURL(ButtonBase):
     text = RawHTMLBlock(
         label=_("Text"),
     )
@@ -49,28 +49,12 @@ class URLButtonBlock(BaseButtonBlock):
         label = _("Botón a URL")
 
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_url'] = True
         return context
-    def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
-        context['button_to_bookmark'] = True
-        return context
-    def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
-        context['button_to_page'] = True
-        return context
-    def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
-        context['button_to_document'] = True
-        return context
-    def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
-        context['button_to_image'] = True
-        return context
 
 
-class BookmarkButtonBlock(BaseButtonBlock):
+class ButtonToBookmark(ButtonBase):
     text = RawHTMLBlock(
         label=_("Text"),
     )
@@ -98,28 +82,32 @@ class BookmarkButtonBlock(BaseButtonBlock):
         label = _("Botón a marcador")
 
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_url'] = True
         return context
+
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_bookmark'] = True
         return context
+
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_page'] = True
         return context
+
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_document'] = True
         return context
+
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_image'] = True
         return context
 
 
-class PageButtonBlock(BaseButtonBlock):
+class ButtonToPage(ButtonBase):
     text = RawHTMLBlock(
         label=_("Text"),
     )
@@ -147,28 +135,28 @@ class PageButtonBlock(BaseButtonBlock):
         label = _("Botón a página")
 
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_url'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_bookmark'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_page'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_document'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_image'] = True
         return context
 
 
-class DocumentButtonBlock(BaseButtonBlock):
+class ButtonToDocument(ButtonBase):
     text = RawHTMLBlock(
         label=_("Text"),
     )
@@ -196,28 +184,28 @@ class DocumentButtonBlock(BaseButtonBlock):
         label = _("Botón a documento")
 
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_url'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_bookmark'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_page'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_document'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_image'] = True
         return context
 
 
-class ImageButtonBlock(BaseButtonBlock):
+class ButtonToImage(ButtonBase):
     text = RawHTMLBlock(
         label=_("Text"),
     )
@@ -245,33 +233,33 @@ class ImageButtonBlock(BaseButtonBlock):
         label = _("Botón a imagen")
 
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_url'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_bookmark'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_page'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_document'] = True
         return context
     def get_context(self, request):
-        context = super(BaseButtonBlock, self).get_context(request)
+        context = super(ButtonBase, self).get_context(request)
         context['button_to_image'] = True
         return context
 
 
-class ButtonsStreamBlock(MaterializeStreamBase):
-    url_button = URLButtonBlock()
-    bookmark_button = BookmarkButtonBlock()
-    page_button = PageButtonBlock()
-    document_button = DocumentButtonBlock()
-    image_button = ImageButtonBlock()
+class ButtonStream(MaterializeStreamBase):
+    url_button = ButtonToURL()
+    bookmark_button = ButtonToBookmark()
+    page_button = ButtonToPage()
+    document_button = ButtonToDocument()
+    image_button = ButtonToImage()
 
     class Meta:
         icon = 'cogs'

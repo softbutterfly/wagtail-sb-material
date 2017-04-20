@@ -16,12 +16,12 @@ from .typography import Heading6
 from .typography import Paragraph
 from .typography import TextStreamBlock
 
-from .buttons import URLButtonBlock
-from .buttons import BookmarkButtonBlock
-from .buttons import PageButtonBlock
-from .buttons import DocumentButtonBlock
-from .buttons import ImageButtonBlock
-from .buttons import ButtonsStreamBlock
+from .buttons import ButtonToURL
+from .buttons import ButtonToBookmark
+from .buttons import ButtonToPage
+from .buttons import ButtonToDocument
+from .buttons import ButtonToImage
+from .buttons import ButtonStream
 
 from .pages import MaterialPageStarter
 from .pages import MaterialPageParallax

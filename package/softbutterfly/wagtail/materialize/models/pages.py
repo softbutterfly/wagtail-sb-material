@@ -30,7 +30,7 @@ from .grid import ContainerStreamBlock
 from .grid import Row
 from .grid import RowStreamBlock
 
-from .buttons import ButtonsStreamBlock
+from .buttons import ButtonStream
 
 from .parallax import Parallax
 
@@ -77,7 +77,7 @@ class MaterialPage(Page):
 
 
 # Generic Content Stream Block -------------------------------------------------
-class ContentStreamBlock(CardsStreamBlock, TextStreamBlock, ButtonsStreamBlock, HelpersStreamBlock):
+class ContentStreamBlock(CardsStreamBlock, TextStreamBlock, ButtonStream, HelpersStreamBlock):
     class Meta:
         label = _("Contents")
 
@@ -164,7 +164,7 @@ class TestingPage(MaterialPage):
         ('heading6', Heading6()),
         ('paragraph', Paragraph()),
         ('text', TextStreamBlock()),
-        ('buttons', ButtonsStreamBlock()),
+        ('buttons', ButtonStream()),
     ])
 
     content_panels = Page.content_panels + [
