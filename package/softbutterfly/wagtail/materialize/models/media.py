@@ -3,15 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.wagtailcore.blocks import RawHTMLBlock
 
-from wagtail.wagtaildocs.blocks import DocumentChooserPanel
-
-from wagtail.wagtailimages.blocks import ImageChooserPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from .base import MaterializeComponentBase
 
 
 class MaterialBoxedImage(MaterializeComponentBase):
-    image = ImageChooserPanel(
+    image = ImageChooserBlock(
         label=_("Image")
     )
 
@@ -23,13 +21,3 @@ class MaterialBoxedImage(MaterializeComponentBase):
     class Meta:
         label = _("Material boxed image")
         icon = 'image'
-
-
-class MaterialDownloadDocument(MaterializeComponentBase):
-    document = DocumentChooserPanel(
-        label=_("Image")
-    )
-
-    class Meta:
-        label = _("Material download document")
-        icon = 'doc-full'

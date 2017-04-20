@@ -8,6 +8,9 @@ from .base import MaterializeStreamBase
 
 
 class BaseTypographyBlock(MaterializeComponentBase):
+    """
+    Base Block for text related blocks
+    """
     class Meta:
         template = "wagtail/materialize/components/typography.html"
 
@@ -75,7 +78,7 @@ class Paragraph(BaseTypographyBlock):
         label = _("Paragraph")
 
 
-class TextStreamBlock(MaterializeStreamBase):
+class TextStream(MaterializeStreamBase):
     h1 = Heading1()
     h2 = Heading2()
     h3 = Heading3()

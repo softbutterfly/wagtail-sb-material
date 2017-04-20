@@ -1,0 +1,20 @@
+{% extends "wagtail/materialize/base-site.html" %}
+{% load wagtailcore_tags %}
+
+{% block NAV_BAR_CLASSES %}white{% endblock NAV_BAR_CLASSES %}
+
+{% block BRANDING %}
+    <a href="{% pageurl site_root %}" class="brand-logo black-text">
+        Logo
+    </a>
+{% endblock BRANDING %}
+
+{% block CONTENT %}
+    {% for block in page.body %}
+        {{ block }}
+    {% endfor %}
+{% endblock CONTENT %}
+
+{% block FOOTER %}
+    {% include 'wagtail/materialize/includes/footer.html' with footer=page.footer %}
+{% endblock FOOTER %}

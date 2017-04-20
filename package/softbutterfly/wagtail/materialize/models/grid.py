@@ -5,29 +5,29 @@ from .base import MaterializeComponentBase
 from .base import MaterializeStreamBase
 
 
-class BaseGridElement(MaterializeComponentBase):
+class GridComponentBase(MaterializeComponentBase):
     materialize_tag = 'div'
 
     class Meta:
         template = "wagtail/materialize/components/grid.html"
 
 
-class Column(BaseGridElement):
+class Column(GridComponentBase):
     materialize_class = 'col'
 
     class Meta:
         label = _("Column")
 
 
-class ColumnStreamBlock(MaterializeStreamBase):
+class ColumnStream(MaterializeStreamBase):
     column = Column()
 
     class Meta:
         label = _("Columns")
 
 
-class Row(BaseGridElement):
-    contents = ColumnStreamBlock()
+class Row(GridComponentBase):
+    contents = ColumnStream()
 
     materialize_class = 'row'
 
@@ -35,23 +35,23 @@ class Row(BaseGridElement):
         label = _("Row")
 
 
-class RowStreamBlock(MaterializeStreamBase):
+class RowStream(MaterializeStreamBase):
     row = Row()
 
     class Meta:
         label = _("Rows")
 
 
-class Container(BaseGridElement):
-    contents = RowStreamBlock()
+class Container(GridComponentBase):
+    contents = RowStream()
 
     materialize_class = 'container'
 
     class Meta:
-        label = _("Contianer")
+        label = _("Container")
 
 
-class ContainerStreamBlock(MaterializeStreamBase):
+class ContainerStream(MaterializeStreamBase):
     container = Container()
 
     class Meta:

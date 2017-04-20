@@ -1,0 +1,21 @@
+{% load wagtailmaterialize_tags %}
+{% with footer.attributes|get_tag|default:'footer' as tag %}
+{% with footer.attributes|get_id as id %}
+{% with footer.attributes|get_classes as classes %}
+{% with footer.attributes|get_attributes as atributes %}
+<{{ tag }} {{ id }} class="footer page-footer{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% if footer.contents %}
+        {% for block in footer.contents %}
+            {{ block }}
+        {% endfor %}
+    {% endif %}
+    <div class="footer-copyright center-align">
+        <div class="container">
+            <span>{{ footer.copyright_text|safe }}</span>
+        </div>
+    </div>
+</{{ tag }}>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

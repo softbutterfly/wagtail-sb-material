@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-
 from wagtail.wagtailcore.blocks import StructBlock
 from wagtail.wagtailcore.blocks import StreamBlock
 from wagtail.wagtailcore.blocks import ChoiceBlock
@@ -32,16 +31,16 @@ _SIZE_CHOICES = (
 )
 
 
-class Space(ChoiceBlock):
+class Size(ChoiceBlock):
     choices = _SIZE_CHOICES
 
     class Meta:
-        label = _("Space")
+        label = _("Size")
         classname = 'full'
 
 
-class Spacer(StructBlock):
-    space = Space()
+class Space(StructBlock):
+    size = Size()
 
     class Meta:
         template = "wagtail/materialize/components/spacer.html"
@@ -1301,20 +1300,12 @@ class Icon(ChoiceBlock):
         classname = 'full'
 
 
-class IconSize(ChoiceBlock):
-    choices = _SIZE_CHOICES
-
-    class Meta:
-        label = _("Size")
-        classname = 'full'
-
-
 class PromotedIcon(MaterializeComponentBase):
     icon = Icon(
         label=_("Icon")
     )
 
-    size = IconSize(
+    size = Size(
         label=_("Size"),
         required=False,
     )
@@ -1336,10 +1327,6 @@ class PromotedIcon(MaterializeComponentBase):
         classname = 'full'
 
 
-class ValignWrapper(object):
-    pass
-
-
-class HelpersStreamBlock(StreamBlock):
-    spacer = Spacer()
+class HelpersStream(StreamBlock):
+    space = Space()
     promotedicon = PromotedIcon()

@@ -40,7 +40,7 @@ class CardTitle(MaterializeComponentBase):
         label = _("Card title")
 
 
-class CardContentStreamBlock(MaterializeStreamBase):
+class CardContent(MaterializeStreamBase):
     paragraph = Paragraph()
 
     class Meta:
@@ -180,7 +180,7 @@ class CardSize(ChoiceBlock):
 
 
 class PanelCard(MaterializeComponentBase):
-    contents = CardContentStreamBlock()
+    contents = CardContent()
 
     color = Color(
         required=False,
@@ -200,7 +200,7 @@ class PanelCard(MaterializeComponentBase):
 
 class Card(MaterializeComponentBase):
     title = CardTitle()
-    contents = CardContentStreamBlock()
+    contents = CardContent()
     actions = CardAction()
 
     color = Color(
@@ -222,7 +222,7 @@ class Card(MaterializeComponentBase):
 class ImageCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
-    contents = CardContentStreamBlock()
+    contents = CardContent()
     actions = CardAction()
     size = CardSize(
         required=False
@@ -265,9 +265,9 @@ class ImageCard(MaterializeComponentBase):
 class RevealCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
-    contents = CardContentStreamBlock()
+    contents = CardContent()
     actions = CardAction()
-    reveal_contents = CardContentStreamBlock(
+    reveal_contents = CardContent(
         label=_("Reveal contents")
     )
     size = CardSize(
@@ -308,7 +308,7 @@ class RevealCard(MaterializeComponentBase):
         label = _("Reveal Card")
 
 
-class CardsStreamBlock(StreamBlock):
+class CardStream(StreamBlock):
     card = Card()
     panel_card = PanelCard()
     image_card = ImageCard()

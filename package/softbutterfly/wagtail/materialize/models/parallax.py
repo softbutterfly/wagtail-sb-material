@@ -7,24 +7,31 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from .base import MaterializeComponentMixin
 from .base import MaterializeComponentBase
+from .base import MaterializeStreamBase
 
 
 class ParallaxImage(MaterializeComponentMixin, ImageChooserBlock):
-    materialize_tag = 'div'
-    materialize_class = 'parallax'
-
     class Meta:
-        template = 'wagtail/materialize/components/parallax.html'
         label = _("Paralax image")
         icon = 'image'
         classname = 'full'
 
 
 class Parallax(MaterializeComponentBase):
-    contents = ''
+    contents = 'Paralax Content'
     image = ParallaxImage()
     full_screen = BooleanBlock(
         label=_("Full screen"),
+        required=False,
+    )
+
+    middle_align = BooleanBlock(
+        label=_("Middle align"),
+        required=False,
+    )
+
+    center_align = BooleanBlock(
+        label=_("Center align"),
         required=False,
     )
 
@@ -34,3 +41,10 @@ class Parallax(MaterializeComponentBase):
     class Meta:
         template = 'wagtail/materialize/components/parallax.html'
         label = _("Parallax")
+
+
+class ParallaxStream(MaterializeStreamBase):
+    parallax = Parallax()
+
+    class Meta:
+        label = _("Parallaxes")

@@ -194,5 +194,4 @@ class ButtonStream(MaterializeStreamBase):
     image_button = ButtonToImage()
 
     class Meta:
-        icon = 'cogs'
         label = _("Buttons")

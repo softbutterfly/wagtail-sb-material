@@ -9,10 +9,12 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
 
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+
 from .base import MaterializeStreamBase
 from .cards import Card
 from .cards import PanelCard
-from .cards import CardsStreamBlock
+from .cards import CardStream
 
 from .typography import Heading1
 from .typography import Heading2
@@ -21,20 +23,25 @@ from .typography import Heading4
 from .typography import Heading5
 from .typography import Heading6
 from .typography import Paragraph
-from .typography import TextStreamBlock
+from .typography import TextStream
 
 from .grid import Column
-from .grid import ColumnStreamBlock
+from .grid import ColumnStream
 from .grid import Container
-from .grid import ContainerStreamBlock
+from .grid import ContainerStream
 from .grid import Row
-from .grid import RowStreamBlock
+from .grid import RowStream
 
 from .buttons import ButtonStream
 
 from .parallax import Parallax
 
-from .helpers import HelpersStreamBlock
+from .sections import Section
+
+from .helpers import Space
+from .helpers import HelpersStream
+
+from .footer import Footer
 
 
 class MaterialPage(Page):
@@ -57,6 +64,18 @@ class MaterialPage(Page):
         default=False,
     )
 
+    footer = models.ForeignKey(
+        Footer,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        SnippetChooserPanel('footer'),
+    ]
+
     promote_panels = [
         MultiFieldPanel(
             Page.promote_panels,
@@ -77,38 +96,38 @@ class MaterialPage(Page):
 
 
 # Generic Content Stream Block -------------------------------------------------
-class ContentStreamBlock(CardsStreamBlock, TextStreamBlock, ButtonStream, HelpersStreamBlock):
+class Contents(CardStream, TextStream, ButtonStream, HelpersStream):
     class Meta:
         label = _("Contents")
 
 
 # Starter Template -------------------------------------------------------------
 class StarterColumn(Column):
-    contents = ContentStreamBlock()
+    contents = Contents()
 
 
-class StarterColumnStreamBlock(ColumnStreamBlock):
+class StarterColumnStream(ColumnStream):
     column = StarterColumn()
 
 
 class StarterRow(Row):
-    contents = StarterColumnStreamBlock()
+    contents = StarterColumnStream()
 
 
-class StarterRowStreamBlock(RowStreamBlock):
+class StarterRowStream(RowStream):
     row = StarterRow()
 
 
 class StarterContainer(Container):
-    contents = StarterRowStreamBlock()
+    contents = StarterRowStream()
 
 
-class StarterContainerStreamBlock(ContainerStreamBlock):
+class StarterContainerStream(ContainerStream):
     container = StarterContainer()
 
 
 class StarterParallax(Parallax):
-    contents = StarterContainerStreamBlock()
+    contents = StarterContainerStream()
 
 
 class StarterContent(MaterializeStreamBase):
@@ -133,8 +152,86 @@ class MaterialPageStarter(MaterialPage):
 
 
 # Parallax Template ------------------------------------------------------------
+class ParallaxColumnContents(Contents):
+    pass
+
+
+class ParallaxColumn(Column):
+    contents = ParallaxColumnContents()
+
+
+class ParallaxRowContents(ColumnStream):
+    contents = Contents()
+    column = ParallaxColumn()
+    space = Space()
+
+    class Meta:
+        label = _("Row contents")
+
+
+class ParallaxRow(Row):
+    contents = ParallaxRowContents()
+
+
+class ParallaxContainerContents(RowStream):
+    contents = Contents()
+    row = ParallaxRow()
+    space = Space()
+
+    class Meta:
+        label = _("Container Contents")
+
+
+class ParallaxContainer(Container):
+    contents = ParallaxContainerContents()
+
+
+class ParallaxSectionContents(MaterializeStreamBase):
+    contents = Contents()
+    container = ParallaxContainer()
+    space = Space()
+
+    class Meta:
+        label = _("Section contents")
+
+
+class ParallaxSection(Section):
+    contents = ParallaxSectionContents()
+
+
+class ParallaxParallaxContent(MaterializeStreamBase):
+    section = ParallaxSection()
+    space = Space()
+
+    class Meta:
+        label = _("Parallax contents")
+
+
+class ParallaxParallax(Parallax):
+    contents = ParallaxParallaxContent()
+
+
+class ParallaxPageBody(MaterializeStreamBase):
+    parallax = ParallaxParallax()
+    section = ParallaxSection()
+    space = Space()
+
+    class Meta:
+        label = _("Parllax page body")
+
+
 class MaterialPageParallax(MaterialPage):
-    template = 'wagtail/materialize/paralax.html'
+    template = 'wagtail/materialize/parallax-page.html'
+
+    body = StreamField(
+        ParallaxPageBody(),
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+        SnippetChooserPanel('footer'),
+    ]
 
     class Meta:
         verbose_name = _("Material Page Parallax")
@@ -163,7 +260,7 @@ class TestingPage(MaterialPage):
         ('heading5', Heading5()),
         ('heading6', Heading6()),
         ('paragraph', Paragraph()),
-        ('text', TextStreamBlock()),
+        ('text', TextStream()),
         ('buttons', ButtonStream()),
     ])
 

@@ -37,63 +37,6 @@
         class="page-wrapper {% block BODY_CLASS %}{% endblock BODY_CLASS %}"
         data-utc-offset="{% now "Z" %}">
         {% block PAGE_PRELOADER %}
-            {% if self.include_preloader %}
-                <div id="page-preloader" class="page-preloader {% block PAGE_PRELOADER_CLASS %}{% endblock PAGE_PRELOADER_CLASS %}">
-                    {% block PRELOADER %}
-                        <div class="preloader-wrapper-external">
-                            <div class="preloader-wrapper big active">
-                                <div class="spinner-layer spinner-blue">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-
-                                <div class="spinner-layer spinner-red">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-
-                                <div class="spinner-layer spinner-yellow">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-
-                                <div class="spinner-layer spinner-green">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endblock PRELOADER %}
-                </div>
-            {% endif %}
         {% endblock PAGE_PRELOADER %}
 
         {% block PAGE_PRE_CONTENT %}
@@ -105,7 +48,7 @@
                     {% block OUT_HEADER_NAVIGATION %}
                     {% endblock OUT_HEADER_NAVIGATION %}
                     {% block HEADER %}
-                        <header id="header" class="page-header {% block HEADER_CLASSES %}{% endblock HEADER_CLASSES %}" {% block HEADER_ATTRS %}{% endblock HEADER_ATTRS %}>
+                        <header id="header" class="page-header {% block HEADER_CLASSES %}white{% endblock HEADER_CLASSES %}" {% block HEADER_ATTRS %}{% endblock HEADER_ATTRS %}>
                             {% block IN_HEADER_NAVIGATION %}
                             {% endblock IN_HEADER_NAVIGATION %}
                         </header><!-- /header -->

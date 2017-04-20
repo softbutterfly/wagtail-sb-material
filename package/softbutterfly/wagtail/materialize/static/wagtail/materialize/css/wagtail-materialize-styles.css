@@ -89,6 +89,15 @@
 }
 
 /* Parallax */
+.parallax-container {
+    height: 400px;
+}
+
 .parallax-container.full-screen {
-    min-height: 100vh;
+    height: 100vh;
+}
+
+/* Section */
+.section{
+    width: 100%;
 }

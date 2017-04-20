@@ -52,7 +52,65 @@
 
 {% block BODY_CLASS %}grey lighten-5 grey-text text-darken-4 is-on-top{% if self.include_preloader %} is-loading{% endif %}{% if self.enable_perfect_scrollbar %} perfect-scrollbar{% endif %}{% endblock BODY_CLASS %}
 
-{% block PAGE_PRELOADER_CLASS %}grey lighten-5{% endblock PAGE_PRELOADER_CLASS %}
+{% block PAGE_PRELOADER %}
+    {% if self.include_preloader %}
+        <div id="page-preloader" class="page-preloader {% block PAGE_PRELOADER_CLASS %}grey lighten-5{% endblock PAGE_PRELOADER_CLASS %}">
+            {% block PRELOADER %}
+                <div class="preloader-wrapper-external">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock PRELOADER %}
+        </div>
+    {% endif %}
+{% endblock PAGE_PRELOADER %}
 
 {% block HEADER_CLASSES %}grey lighten-5{% endblock HEADER_CLASSES %}
 
@@ -83,7 +141,7 @@
             </ul>
         {% endif %}
     {% endif %}
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="{% block NAV_BAR_CLASSES %}light-blue lighten-1{% endblock NAV_BAR_CLASSES %}" role="navigation">
         <div class="container nav-wrapper">
             {% block BRANDING %}
                 <a href="{% pageurl site_root %}" class="brand-logo">
@@ -117,7 +175,7 @@
 {% block FOOTER_COPYRIGHT_CLASSES %}light grey-text text-lighten-5 center-align{% endblock FOOTER_COPYRIGHT_CLASSES %}
 {% block FOOTER_COPYRIGHT %}
     <div class="container">
-        Made with <i class="fa fa-heart red-text"></i> by HackSpace Developers Team
+        Made with <i class="fa fa-heart red-text"></i> by SoftButterfly
     </div>
 {% endblock FOOTER_COPYRIGHT %}
 

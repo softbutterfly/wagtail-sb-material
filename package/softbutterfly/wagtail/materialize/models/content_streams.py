@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from .base import MaterializeStreamBase
+from .base import MaterializeStructBase
 
 from .cards import Card
 from .cards import PanelCard
@@ -14,21 +15,19 @@ from .typography import Heading4
 from .typography import Heading5
 from .typography import Heading6
 from .typography import Paragraph
-from .typography import TextStreamBlock
 
 from .buttons import ButtonToURL
 from .buttons import ButtonToBookmark
 from .buttons import ButtonToPage
 from .buttons import ButtonToDocument
 from .buttons import ButtonToImage
-from .buttons import ButtonStream
 
-from .pages import MaterialPageStarter
-from .pages import MaterialPageParallax
-from .pages import TestingPage
+from .helpers import Space
+from .helpers import PromotedIcon
 
-from .helpers import Spacer
-from .helpers import HelpersStreamBlock
+from .grid import Container
+from .grid import Column
+from .grid import Row
 
 from .section import Section
 
@@ -61,3 +60,13 @@ class CardStream(MaterializeStreamBase):
 
     class Meta:
         label = _("Card stream")
+
+
+class Body(MaterializeStreamBase):
+    parallax = Parallax()
+    section = Section()
+    container = Container()
+
+    class Meta:
+        label = _("Body")
+        icon = 'cog'

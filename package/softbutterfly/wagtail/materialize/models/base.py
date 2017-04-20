@@ -23,12 +23,24 @@ class MaterializeComponentMixin(object):
 
 
 class Tag(CharBlock):
+    """
+    Override CharBlock for HTML tag specific block
+
+    <tag></tag>
+    """
+
     class Meta:
         label = _("Tag")
         icon = 'cog'
 
 
 class ID(CharBlock):
+    """
+    Override CharBlock for HTML id attribute specific block
+
+    <tag id="ID"></tag>
+    """
+
     class Meta:
         template = 'wagtail/materialize/components/id.html'
         label = _("ID")
@@ -36,12 +48,24 @@ class ID(CharBlock):
 
 
 class Class(CharBlock):
+    """
+    Override CharBlock for HTML class atribute specific block
+
+    <tag id="ID" class="Classes"></tag>
+    """
+
     class Meta:
         label = _("Class")
         icon = 'cog'
 
 
 class Attribute(StructBlock):
+    """
+    Struct block for html attributes
+
+    <tag id="ID" class="Classes" attribute_name="attribute_value"></tag>
+    """
+
     attribute_name = CharBlock(
         label=_("Attribute name")
     )
@@ -59,6 +83,10 @@ class Attribute(StructBlock):
 
 
 class HTMLAttributes(StreamBlock):
+    """
+    Stream block for attributes
+    """
+
     tag = Tag()
     identifier = ID()
     classes = Class(label=_("Classes"))
@@ -71,15 +99,24 @@ class HTMLAttributes(StreamBlock):
 
 
 class MaterializeComponentBase(MaterializeComponentMixin, StructBlock):
+    """
+    Base component for Materialize Components
+    """
+
     attributes = HTMLAttributes()
 
     class Meta:
+        template = 'wagtail/materialize/components/materialize-component-base.html'
         label = _("Base Material Struct Block")
         icon = "cog"
         classname = "full"
 
 
 class MaterializeStreamBase(StreamBlock):
+    """
+    Base Stream block of Materialize Components
+    """
+
     class Meta:
         template = 'wagtail/materialize/components/materialize-stream-base.html'
         icon = "cogs"
