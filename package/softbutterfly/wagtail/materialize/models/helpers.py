@@ -32,7 +32,7 @@ _SIZE_CHOICES = (
 )
 
 
-class SpaceChoice(ChoiceBlock):
+class Space(ChoiceBlock):
     choices = _SIZE_CHOICES
 
     class Meta:
@@ -41,7 +41,7 @@ class SpaceChoice(ChoiceBlock):
 
 
 class Spacer(StructBlock):
-    space = SpaceChoice()
+    space = Space()
 
     class Meta:
         template = "wagtail/materialize/components/spacer.html"
@@ -336,7 +336,7 @@ _PURE_COLORS = [
 ]
 
 
-class ColorChoices(ChoiceBlock):
+class Color(ChoiceBlock):
     choices = _COLOR_CHOICES
 
     class Meta:
@@ -344,7 +344,7 @@ class ColorChoices(ChoiceBlock):
         classname = 'full'
 
 
-class TextColorChoices(ChoiceBlock):
+class TextColor(ChoiceBlock):
     choices = list(
         map(
             lambda k, v: (k.replace(' ', '-text text-') if k not in _PURE_COLORS else k + '-text', v),
@@ -1293,7 +1293,7 @@ _ICON_CHOICES = (
 )
 
 
-class IconChoice(ChoiceBlock):
+class Icon(ChoiceBlock):
     choices = _ICON_CHOICES
 
     class Meta:
@@ -1301,7 +1301,7 @@ class IconChoice(ChoiceBlock):
         classname = 'full'
 
 
-class IconSizeChoice(ChoiceBlock):
+class IconSize(ChoiceBlock):
     choices = _SIZE_CHOICES
 
     class Meta:
@@ -1310,21 +1310,21 @@ class IconSizeChoice(ChoiceBlock):
 
 
 class PromotedIcon(MaterializeComponentBase):
-    icon = IconChoice(
+    icon = Icon(
         label=_("Icon")
     )
 
-    size = IconSizeChoice(
+    size = IconSize(
         label=_("Size"),
         required=False,
     )
 
-    color = ColorChoices(
+    color = Color(
         label=_("Background Color"),
         required=False,
     )
 
-    text_color = TextColorChoices(
+    text_color = TextColor(
         label=_("Icon Color"),
         required=False,
     )

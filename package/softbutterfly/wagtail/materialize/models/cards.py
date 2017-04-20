@@ -16,8 +16,8 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 from .base import MaterializeComponentBase
 from .base import MaterializeStreamBase
 
-from .helpers import ColorChoices
-from .helpers import TextColorChoices
+from .helpers import Color
+from .helpers import TextColor
 
 from .typography import Paragraph
 
@@ -47,7 +47,7 @@ class CardContentStreamBlock(MaterializeStreamBase):
         label = _("Card content")
 
 
-class BaseCardActionBlock(MaterializeComponentBase):
+class CardActionBase(MaterializeComponentBase):
     contents = RawHTMLBlock(
         label=_("Text")
     )
@@ -62,7 +62,7 @@ class BaseCardActionBlock(MaterializeComponentBase):
         icon = "placeholder"
 
 
-class CardActionToURL(BaseCardActionBlock):
+class CardActionToURL(CardActionBase):
     link = URLBlock(
         label=_("URL"),
         required=False,
@@ -72,12 +72,12 @@ class CardActionToURL(BaseCardActionBlock):
         label = _("Acción a URL")
 
     def get_context(self, request):
-        context = super(BaseCardActionBlock, self).get_context(request)
+        context = super(CardActionBase, self).get_context(request)
         context['action_to_url'] = True
         return context
 
 
-class CardActionToBookmark(BaseCardActionBlock):
+class CardActionToBookmark(CardActionBase):
     link = CharBlock(
         label=_("Marcador"),
         required=False,
@@ -87,12 +87,12 @@ class CardActionToBookmark(BaseCardActionBlock):
         label = _("Acción a marcador")
 
     def get_context(self, request):
-        context = super(BaseCardActionBlock, self).get_context(request)
+        context = super(CardActionBase, self).get_context(request)
         context['action_to_bookmark'] = True
         return context
 
 
-class CardActionToPage(BaseCardActionBlock):
+class CardActionToPage(CardActionBase):
     link = PageChooserBlock(
         label=_("Página"),
         required=False,
@@ -102,12 +102,12 @@ class CardActionToPage(BaseCardActionBlock):
         label = _("Acción a página")
 
     def get_context(self, request):
-        context = super(BaseCardActionBlock, self).get_context(request)
+        context = super(CardActionBase, self).get_context(request)
         context['action_to_page'] = True
         return context
 
 
-class CardActionToDocument(BaseCardActionBlock):
+class CardActionToDocument(CardActionBase):
     link = DocumentChooserBlock(
         label=("Documento"),
         required=False,
@@ -117,12 +117,12 @@ class CardActionToDocument(BaseCardActionBlock):
         label = _("Acción a documento")
 
     def get_context(self, request):
-        context = super(BaseCardActionBlock, self).get_context(request)
+        context = super(CardActionBase, self).get_context(request)
         context['action_to_document'] = True
         return context
 
 
-class CardActionToImage(BaseCardActionBlock):
+class CardActionToImage(CardActionBase):
     link = ImageChooserBlock(
         label=("Imagen"),
         required=False,
@@ -132,12 +132,12 @@ class CardActionToImage(BaseCardActionBlock):
         label = _("Acción a imagen")
 
     def get_context(self, request):
-        context = super(BaseCardActionBlock, self).get_context(request)
+        context = super(CardActionBase, self).get_context(request)
         context['action_to_image'] = True
         return context
 
 
-class CardActionsStreamBlock(MaterializeStreamBase):
+class CardActiontream(MaterializeStreamBase):
     card_action_to_url = CardActionToURL()
     card_action_to_bookmark = CardActionToBookmark()
     card_action_to_page = CardActionToPage()
@@ -149,10 +149,10 @@ class CardActionsStreamBlock(MaterializeStreamBase):
         label = _("Card action")
 
 
-class CardActions(MaterializeComponentBase):
-    contents = CardActionsStreamBlock()
+class CardAction(MaterializeComponentBase):
+    contents = CardActiontream()
 
-    color = ColorChoices(
+    color = Color(
         required=False,
     )
 
@@ -171,7 +171,7 @@ _CARD_SIZE_CHOICES = [
 ]
 
 
-class CardSizeChoice(ChoiceBlock):
+class CardSize(ChoiceBlock):
     choices = _CARD_SIZE_CHOICES
 
     class Meta:
@@ -182,11 +182,11 @@ class CardSizeChoice(ChoiceBlock):
 class PanelCard(MaterializeComponentBase):
     contents = CardContentStreamBlock()
 
-    color = ColorChoices(
+    color = Color(
         required=False,
     )
 
-    text_color = TextColorChoices(
+    text_color = TextColor(
         required=False,
     )
 
@@ -201,13 +201,13 @@ class PanelCard(MaterializeComponentBase):
 class Card(MaterializeComponentBase):
     title = CardTitle()
     contents = CardContentStreamBlock()
-    actions = CardActions()
+    actions = CardAction()
 
-    color = ColorChoices(
+    color = Color(
         required=False,
     )
 
-    text_color = TextColorChoices(
+    text_color = TextColor(
         required=False,
     )
 
@@ -223,8 +223,8 @@ class ImageCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
     contents = CardContentStreamBlock()
-    actions = CardActions()
-    size = CardSizeChoice(
+    actions = CardAction()
+    size = CardSize(
         required=False
     )
 
@@ -246,11 +246,11 @@ class ImageCard(MaterializeComponentBase):
         required=False,
     )
 
-    color = ColorChoices(
+    color = Color(
         required=False,
     )
 
-    text_color = TextColorChoices(
+    text_color = TextColor(
         required=False,
     )
 
@@ -266,11 +266,11 @@ class RevealCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
     contents = CardContentStreamBlock()
-    actions = CardActions()
+    actions = CardAction()
     reveal_contents = CardContentStreamBlock(
         label=_("Reveal contents")
     )
-    size = CardSizeChoice(
+    size = CardSize(
         required=False
     )
 
@@ -292,11 +292,11 @@ class RevealCard(MaterializeComponentBase):
         default=False,
     )
 
-    color = ColorChoices(
+    color = Color(
         required=False,
     )
 
-    text_color = TextColorChoices(
+    text_color = TextColor(
         required=False,
     )
 
