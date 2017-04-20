@@ -83,27 +83,7 @@ class ButtonToBookmark(ButtonBase):
 
     def get_context(self, request):
         context = super(ButtonBase, self).get_context(request)
-        context['button_to_url'] = True
-        return context
-
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
         context['button_to_bookmark'] = True
-        return context
-
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_page'] = True
-        return context
-
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_document'] = True
-        return context
-
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_image'] = True
         return context
 
 
@@ -136,23 +116,7 @@ class ButtonToPage(ButtonBase):
 
     def get_context(self, request):
         context = super(ButtonBase, self).get_context(request)
-        context['button_to_url'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_bookmark'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
         context['button_to_page'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_document'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_image'] = True
         return context
 
 
@@ -185,23 +149,7 @@ class ButtonToDocument(ButtonBase):
 
     def get_context(self, request):
         context = super(ButtonBase, self).get_context(request)
-        context['button_to_url'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_bookmark'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_page'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
         context['button_to_document'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_image'] = True
         return context
 
 
@@ -232,22 +180,6 @@ class ButtonToImage(ButtonBase):
     class Meta:
         label = _("Botón a imagen")
 
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_url'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_bookmark'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_page'] = True
-        return context
-    def get_context(self, request):
-        context = super(ButtonBase, self).get_context(request)
-        context['button_to_document'] = True
-        return context
     def get_context(self, request):
         context = super(ButtonBase, self).get_context(request)
         context['button_to_image'] = True
