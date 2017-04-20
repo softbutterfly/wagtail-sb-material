@@ -6,7 +6,7 @@ from wagtail.wagtailcore.blocks import StructBlock
 from wagtail.wagtailcore.blocks import StreamBlock
 from wagtail.wagtailcore.blocks import ChoiceBlock
 
-from .base import MaterializeBaseStructBlock
+from .base import MaterializeComponentBase
 
 
 _SIZE_CHOICES = (
@@ -1309,7 +1309,7 @@ class IconSizeChoice(ChoiceBlock):
         classname = 'full'
 
 
-class PromotedIcon(MaterializeBaseStructBlock):
+class PromotedIcon(MaterializeComponentBase):
     icon = IconChoice(
         label=_("Icon")
     )

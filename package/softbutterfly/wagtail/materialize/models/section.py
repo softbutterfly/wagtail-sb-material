@@ -6,10 +6,10 @@ from wagtail.wagtailcore.blocks import BooleanBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from .base import MaterializeComponentMixin
-from .base import MaterializeBaseStructBlock
+from .base import MaterializeComponentBase
 
 
-class Section(MaterializeBaseStructBlock):
+class Section(MaterializeComponentBase):
     contents = ''
 
     materialize_tag = 'section'

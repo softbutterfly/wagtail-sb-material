@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeStreamBase
 
 from .cards import Card
 from .cards import PanelCard
@@ -35,7 +35,7 @@ from .section import Section
 from .parallax import Parallax
 
 
-class TextStream(MaterializeBaseStreamBlock):
+class TextStream(MaterializeStreamBase):
     h1 = Heading1()
     h2 = Heading2()
     h3 = Heading3()
@@ -48,12 +48,12 @@ class TextStream(MaterializeBaseStreamBlock):
         label = _("Text stream")
 
 
-class MultimediaStream(MaterializeBaseStreamBlock):
+class MultimediaStream(MaterializeStreamBase):
     class Meta:
         label = _("Multimedia stream")
 
 
-class CardStream(MaterializeBaseStreamBlock):
+class CardStream(MaterializeStreamBase):
     card = Card()
     panel_card = PanelCard()
     image_card = ImageCard()

@@ -7,10 +7,10 @@ from wagtail.wagtaildocs.blocks import DocumentChooserPanel
 
 from wagtail.wagtailimages.blocks import ImageChooserPanel
 
-from .base import MaterializeBaseStructBlock
+from .base import MaterializeComponentBase
 
 
-class MaterialBoxedImage(MaterializeBaseStructBlock):
+class MaterialBoxedImage(MaterializeComponentBase):
     image = ImageChooserPanel(
         label=_("Image")
     )
@@ -25,7 +25,7 @@ class MaterialBoxedImage(MaterializeBaseStructBlock):
         icon = 'image'
 
 
-class MaterialDownloadDocument(MaterializeBaseStructBlock):
+class MaterialDownloadDocument(MaterializeComponentBase):
     document = DocumentChooserPanel(
         label=_("Image")
     )

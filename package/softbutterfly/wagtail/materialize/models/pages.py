@@ -9,7 +9,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
 
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeStreamBase
 from .cards import Card
 from .cards import PanelCard
 from .cards import CardsStreamBlock
@@ -111,7 +111,7 @@ class StarterParallax(Parallax):
     contents = StarterContainerStreamBlock()
 
 
-class StarterContent(MaterializeBaseStreamBlock):
+class StarterContent(MaterializeStreamBase):
     container = StarterContainer()
     parallax = StarterParallax()
 

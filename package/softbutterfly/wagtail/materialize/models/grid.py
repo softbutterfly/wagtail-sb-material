@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-from .base import MaterializeBaseStructBlock
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeComponentBase
+from .base import MaterializeStreamBase
 
 
-class BaseGridElement(MaterializeBaseStructBlock):
+class BaseGridElement(MaterializeComponentBase):
     materialize_tag = 'div'
 
     class Meta:
@@ -19,7 +19,7 @@ class Column(BaseGridElement):
         label = _("Column")
 
 
-class ColumnStreamBlock(MaterializeBaseStreamBlock):
+class ColumnStreamBlock(MaterializeStreamBase):
     column = Column()
 
     class Meta:
@@ -35,7 +35,7 @@ class Row(BaseGridElement):
         label = _("Row")
 
 
-class RowStreamBlock(MaterializeBaseStreamBlock):
+class RowStreamBlock(MaterializeStreamBase):
     row = Row()
 
     class Meta:
@@ -51,7 +51,7 @@ class Container(BaseGridElement):
         label = _("Contianer")
 
 
-class ContainerStreamBlock(MaterializeBaseStreamBlock):
+class ContainerStreamBlock(MaterializeStreamBase):
     container = Container()
 
     class Meta:

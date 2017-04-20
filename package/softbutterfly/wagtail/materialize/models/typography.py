@@ -3,11 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.wagtailcore.blocks import RawHTMLBlock
 
-from .base import MaterializeBaseStructBlock
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeComponentBase
+from .base import MaterializeStreamBase
 
 
-class BaseTypographyBlock(MaterializeBaseStructBlock):
+class BaseTypographyBlock(MaterializeComponentBase):
     class Meta:
         template = "wagtail/materialize/components/typography.html"
 
@@ -75,7 +75,7 @@ class Paragraph(BaseTypographyBlock):
         label = _("Paragraph")
 
 
-class TextStreamBlock(MaterializeBaseStreamBlock):
+class TextStreamBlock(MaterializeStreamBase):
     h1 = Heading1()
     h2 = Heading2()
     h3 = Heading3()

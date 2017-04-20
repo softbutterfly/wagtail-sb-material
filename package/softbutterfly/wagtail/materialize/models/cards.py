@@ -13,8 +13,8 @@ from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
-from .base import MaterializeBaseStructBlock
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeComponentBase
+from .base import MaterializeStreamBase
 
 from .helpers import ColorChoices
 from .helpers import TextColorChoices
@@ -27,7 +27,7 @@ class CardImage(ImageChooserBlock):
         label = _("Card image")
 
 
-class CardTitle(MaterializeBaseStructBlock):
+class CardTitle(MaterializeComponentBase):
     contents = CharBlock(
         label=_("Card title")
     )
@@ -40,14 +40,14 @@ class CardTitle(MaterializeBaseStructBlock):
         label = _("Card title")
 
 
-class CardContentStreamBlock(MaterializeBaseStreamBlock):
+class CardContentStreamBlock(MaterializeStreamBase):
     paragraph = Paragraph()
 
     class Meta:
         label = _("Card content")
 
 
-class BaseCardActionBlock(MaterializeBaseStructBlock):
+class BaseCardActionBlock(MaterializeComponentBase):
     contents = RawHTMLBlock(
         label=_("Text")
     )
@@ -137,7 +137,7 @@ class CardActionToImage(BaseCardActionBlock):
         return context
 
 
-class CardActionsStreamBlock(MaterializeBaseStreamBlock):
+class CardActionsStreamBlock(MaterializeStreamBase):
     card_action_to_url = CardActionToURL()
     card_action_to_bookmark = CardActionToBookmark()
     card_action_to_page = CardActionToPage()
@@ -149,7 +149,7 @@ class CardActionsStreamBlock(MaterializeBaseStreamBlock):
         label = _("Card action")
 
 
-class CardActions(MaterializeBaseStructBlock):
+class CardActions(MaterializeComponentBase):
     contents = CardActionsStreamBlock()
 
     color = ColorChoices(
@@ -179,7 +179,7 @@ class CardSizeChoice(ChoiceBlock):
         classname = 'full'
 
 
-class PanelCard(MaterializeBaseStructBlock):
+class PanelCard(MaterializeComponentBase):
     contents = CardContentStreamBlock()
 
     color = ColorChoices(
@@ -198,7 +198,7 @@ class PanelCard(MaterializeBaseStructBlock):
         label = _("Panel card")
 
 
-class Card(MaterializeBaseStructBlock):
+class Card(MaterializeComponentBase):
     title = CardTitle()
     contents = CardContentStreamBlock()
     actions = CardActions()
@@ -219,7 +219,7 @@ class Card(MaterializeBaseStructBlock):
         label = _("Card")
 
 
-class ImageCard(MaterializeBaseStructBlock):
+class ImageCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
     contents = CardContentStreamBlock()
@@ -262,7 +262,7 @@ class ImageCard(MaterializeBaseStructBlock):
         label = _("Image Card")
 
 
-class RevealCard(MaterializeBaseStructBlock):
+class RevealCard(MaterializeComponentBase):
     image = CardImage()
     title = CardTitle()
     contents = CardContentStreamBlock()

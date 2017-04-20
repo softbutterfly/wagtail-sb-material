@@ -11,11 +11,11 @@ from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
-from .base import MaterializeBaseStructBlock
-from .base import MaterializeBaseStreamBlock
+from .base import MaterializeComponentBase
+from .base import MaterializeStreamBase
 
 
-class BaseButtonBlock(MaterializeBaseStructBlock):
+class BaseButtonBlock(MaterializeComponentBase):
     class Meta:
         template = "wagtail/materialize/components/button.html"
         icon = 'placeholder'
@@ -266,7 +266,7 @@ class ImageButtonBlock(BaseButtonBlock):
         return context
 
 
-class ButtonsStreamBlock(MaterializeBaseStreamBlock):
+class ButtonsStreamBlock(MaterializeStreamBase):
     url_button = URLButtonBlock()
     bookmark_button = BookmarkButtonBlock()
     page_button = PageButtonBlock()

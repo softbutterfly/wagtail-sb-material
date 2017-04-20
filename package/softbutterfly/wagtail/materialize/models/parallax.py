@@ -6,7 +6,7 @@ from wagtail.wagtailcore.blocks import BooleanBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from .base import MaterializeComponentMixin
-from .base import MaterializeBaseStructBlock
+from .base import MaterializeComponentBase
 
 
 class ParallaxImage(MaterializeComponentMixin, ImageChooserBlock):
@@ -20,7 +20,7 @@ class ParallaxImage(MaterializeComponentMixin, ImageChooserBlock):
         classname = 'full'
 
 
-class Parallax(MaterializeBaseStructBlock):
+class Parallax(MaterializeComponentBase):
     contents = ''
     image = ParallaxImage()
     full_screen = BooleanBlock(
