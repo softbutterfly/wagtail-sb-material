@@ -1,5 +1,5 @@
 {% load wagtailcore_tags %}
-{% load materialize %}
+{% load wagtailmaterialize_tags %}
 <{{ value.attributes|get_tag|default:"a" }}
     {{ value.attributes|get_id }}
     class="btn{% if value.flat %} btn-flat{% endif %}{% if value.large %} btn-large{% endif %}{% if value.disabled %} disbled{% endif %} {{ value.attributes|get_classes }}"

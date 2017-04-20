@@ -1,4 +1,4 @@
-{% load materialize %}
+{% load wagtailmaterialize_tags %}
 {% with value.attributes|get_classes as classes %}
 <i class="material-icons promoted-icon{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
 style="height:{{ value.size }};width:{{ value.size }};font-size:{{ value.size }}">{{ value.icon }}</i>
