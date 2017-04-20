@@ -7,6 +7,11 @@ from wagtail.wagtailcore.blocks import StreamBlock
 
 
 class MaterializeComponentMixin(object):
+    """
+    Mixin used to make default materialize css class and html tag for
+    current component.
+    """
+
     materialize_class = ''
     materialize_tag = ''
 
@@ -17,7 +22,26 @@ class MaterializeComponentMixin(object):
         return context
 
 
-class AttributeBlock(StructBlock):
+class Tag(CharBlock):
+    class Meta:
+        label = _("Tag")
+        icon = 'cog'
+
+
+class ID(CharBlock):
+    class Meta:
+        template = 'wagtail/materialize/components/id.html'
+        label = _("ID")
+        icon = 'cog'
+
+
+class Class(CharBlock):
+    class Meta:
+        label = _("Class")
+        icon = 'cog'
+
+
+class Attribute(StructBlock):
     attribute_name = CharBlock(
         label=_("Attribute name")
     )
@@ -34,39 +58,20 @@ class AttributeBlock(StructBlock):
         icon = 'cogs'
 
 
-class IDBlock(CharBlock):
-    class Meta:
-        template = 'wagtail/materialize/components/id.html'
-        label = _("ID")
-        icon = 'cog'
-
-
-class ClassesBlock(CharBlock):
-    class Meta:
-        label = _("Classes")
-        icon = 'cog'
-
-
-class TagBlock(CharBlock):
-    class Meta:
-        label = _("Tag")
-        icon = 'cog'
-
-
-class HTMLTagAttributesStreamBlock(StreamBlock):
-    tag = TagBlock(label=_("Tag"))
-    identifier = IDBlock(label=_("Identifier"))
-    classes = ClassesBlock(label=_("Classes"))
-    attributes = AttributeBlock(label=_("Attributes"))
+class HTMLAttributes(StreamBlock):
+    tag = Tag()
+    identifier = ID()
+    classes = Class(label=_("Classes"))
+    attribute = Attribute()
 
     class Meta:
-        label = _("HTML Tag attributes")
+        label = _("HTML attributes")
         icon = 'cogs'
         classname = 'full'
 
 
-class MaterializeBaseStructBlock(MaterializeComponentMixin, StructBlock):
-    attributes = HTMLTagAttributesStreamBlock()
+class MaterializeComponentBase(MaterializeComponentMixin, StructBlock):
+    attributes = HTMLAttributes()
 
     class Meta:
         label = _("Base Material Struct Block")
@@ -74,8 +79,8 @@ class MaterializeBaseStructBlock(MaterializeComponentMixin, StructBlock):
         classname = "full"
 
 
-class MaterializeBaseStreamBlock(StreamBlock):
+class MaterializeStreamBase(StreamBlock):
     class Meta:
-        template = 'wagtail/materialize/components/materialize-base-stream-block.html'
+        template = 'wagtail/materialize/components/materialize-stream-base.html'
         icon = "cogs"
         classname = "full"

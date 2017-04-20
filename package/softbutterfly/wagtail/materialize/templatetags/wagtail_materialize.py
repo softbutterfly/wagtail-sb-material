@@ -3,9 +3,76 @@ from django.utils.six.moves.urllib.parse import urlencode
 
 import hashlib
 
-
 register = template.Library()
 
+
+"""
+Template tags for HTMLAttributes stream block processing
+"""
+
+
+@register.filter
+def get_tag(blocks):
+    """
+    Template tag to retrieve the html tag.
+
+    Search for every block and return the first block with block_type 'tag'
+    """
+    for block in blocks:
+        if block.block_type == 'tag':
+            return block
+
+    return ''
+
+
+@register.filter
+def get_id(blocks):
+    """
+    Template tag to retrieve the html id.
+
+    Search for every block and return the first block with block_type 'identifier'
+    """
+    for block in blocks:
+        if block.block_type == 'identifier':
+            return block
+
+    return ''
+
+
+@register.filter
+def get_classes(blocks):
+    """
+    Template tag to retrieve the html classes.
+
+    Search for every block and return the first block with block_type 'classes'
+    """
+    for block in blocks:
+        if block.block_type == 'classes':
+            return block
+
+    return ''
+
+
+@register.filter
+def get_attributes(blocks):
+    """
+    Template tag to retrieve other html attributes.
+
+    Search for every block, join the blocks with block_type 'tag' and return
+    them in a list.
+    """
+    attributes = []
+
+    for block in blocks:
+        if block.block_type == 'attribute':
+            attributes.append(block)
+
+    return attributes
+
+
+
+"""
+"""
 
 @register.assignment_tag(takes_context=True)
 def get_gravatar_url(context, email, size=50):
@@ -163,38 +230,3 @@ def breadcrumbs(context):
 """
 
 
-@register.filter
-def get_tag(blocks):
-    for block in blocks:
-        if block.block_type == 'tag':
-            return block
-
-    return ''
-
-
-@register.filter
-def get_id(blocks):
-    for block in blocks:
-        if block.block_type == 'identifier':
-            return block
-
-    return ''
-
-
-@register.filter
-def get_classes(blocks):
-    for block in blocks:
-        if block.block_type == 'classes':
-            return block
-
-    return ''
-
-
-@register.filter
-def get_attributes(blocks):
-    attributes = []
-    for block in blocks:
-        if block.block_type == 'attributes':
-            attributes.append(block)
-
-    return attributes

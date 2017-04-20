@@ -4,9 +4,9 @@
 {% with value.attributes|get_classes as classes %}
 {% with value.attributes|get_attributes as atributes %}
 <{{ tag }} {{ id }} class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
-{% if value.contents %}
-    {{ value.contents }}
-{% endif %}
+    {% if value.contents %}
+        {{ value.contents }}
+    {% endif %}
 </{{ tag }}>
 {% endwith %}
 {% endwith %}
