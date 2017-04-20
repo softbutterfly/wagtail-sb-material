@@ -7,4 +7,4 @@ class MaterializeConfig(AppConfig):
     name = 'softbutterfly.wagtail.materialize'
     verbose_name = _('Wagtail Materialize')
 
-    label = 'wagtail_materialize'
+    label = 'wagtailmaterialize'
