@@ -27,6 +27,7 @@ from .helpers import HelpersStream
 from .pages import MaterialPageStarter
 from .pages import MaterialPageParallax
 from .pages import TestingPage
+from .pages import MaterialPage
 
 from .grid import Column
 from .grid import ColumnStream
@@ -44,6 +45,8 @@ from .parallax import ParallaxStream
 from .media import MaterialBoxedImage
 
 from .footer import Footer
+
+from .branding import BrandLogo
 
 
 __all__ = [
@@ -89,10 +92,12 @@ __all__ = [
     Section,
     SectionStream,
 
+    BrandLogo,
+
     Footer,
 
     TestingPage,
     MaterialPageStarter,
     MaterialPageParallax,
-
+    MaterialPage,
 ]

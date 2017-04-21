@@ -1,19 +1,19 @@
 {% load wagtailcore_tags %}
 {% load wagtailmaterialize_tags %}
-{% with value.attributes|get_tag|default:materialize_tag as tag %}
-{% with value.attributes|get_id as id %}
-{% with value.attributes|get_classes as classes %}
-{% with value.attributes|get_attributes as atributes %}
-<{{ tag }} {{ id }}
-class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}
-{% if action_to_url %}href="{{ value.link }}"{% endif %}
-{% if action_to_bookmark %}href="#{{ value.link }}"{% endif %}
-{% if action_to_page %}href="{% pageurl value.link %}"{% endif %}
-{% if action_to_image %}href="{{ value.link.url }}"{% endif %}
-{% if action_to_document %}href="{{ value.link.file.url }}"{% endif %}>
-{{ value.contents }}
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
+<{{ tag }}
+    {{ id }}
+    class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}"
+    {% if action_to_url %}href="{{ value.link }}"{% endif %}
+    {% if action_to_bookmark %}href="#{{ value.link }}"{% endif %}
+    {% if action_to_page %}href="{% pageurl value.link %}"{% endif %}
+    {% if action_to_image %}href="{{ value.link.url }}"{% endif %}
+    {% if action_to_document %}href="{{ value.link.file.url }}"{% endif %}
+    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% if value.contents %}
+        {{ value.contents }}
+    {% endif %}
 </{{ tag }}>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}

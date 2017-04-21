@@ -1,5 +1,11 @@
 {% load wagtailmaterialize_tags %}
-{% with value.attributes|get_classes as classes %}
-<i class="material-icons promoted-icon{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
-style="height:{{ value.size }};width:{{ value.size }};font-size:{{ value.size }}">{{ value.icon }}</i>
-{% endwith %}
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
+<{{ tag }}
+    class="{{ materialize_class }}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
+    style="height:{{ value.size }};width:{{ value.size }};font-size:{{ value.size }}"
+    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {{ value.icon }}
+</{{ tag }}>

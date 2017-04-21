@@ -16,16 +16,19 @@ from .base import MaterializeStreamBase
 
 
 class ButtonBase(MaterializeComponentBase):
+    contents = RawHTMLBlock(
+        label=_("Text"),
+    )
+
+    materialize_tag = 'a'
+    materialize_class = 'btn'
+
     class Meta:
         template = "wagtail/materialize/components/button.html"
         icon = 'placeholder'
 
 
 class ButtonToURL(ButtonBase):
-    text = RawHTMLBlock(
-        label=_("Text"),
-    )
-
     link = URLBlock(
         label=_("URL"),
     )
@@ -55,10 +58,6 @@ class ButtonToURL(ButtonBase):
 
 
 class ButtonToBookmark(ButtonBase):
-    text = RawHTMLBlock(
-        label=_("Text"),
-    )
-
     link = CharBlock(
         label=_("Marcador"),
     )
@@ -88,10 +87,6 @@ class ButtonToBookmark(ButtonBase):
 
 
 class ButtonToPage(ButtonBase):
-    text = RawHTMLBlock(
-        label=_("Text"),
-    )
-
     link = PageChooserBlock(
         label=_("Página"),
     )
@@ -121,10 +116,6 @@ class ButtonToPage(ButtonBase):
 
 
 class ButtonToDocument(ButtonBase):
-    text = RawHTMLBlock(
-        label=_("Text"),
-    )
-
     link = DocumentChooserBlock(
         label=("Documento"),
     )
@@ -154,10 +145,6 @@ class ButtonToDocument(ButtonBase):
 
 
 class ButtonToImage(ButtonBase):
-    text = RawHTMLBlock(
-        label=_("Text"),
-    )
-
     link = ImageChooserBlock(
         label=("Imagen"),
     )

@@ -1,14 +1,10 @@
 {% load wagtailmaterialize_tags %}
-{% with value.attributes|get_tag|default:materialize_tag as tag %}
-{% with value.attributes|get_id as id %}
-{% with value.attributes|get_classes as classes %}
-{% with value.attributes|get_attributes as atributes %}
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
 <{{ tag }} {{ id }} class="{{ materialize_class }}{% if use_gradient %} with-gradient{% endif %}{% if reveal %} activator{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
-{% if close %}<i class="material-icons right">close</i>{% endif %}
-{% if reveal %}<i class="material-icons right">more_vert</i>{% endif %}
-{{ value.contents }}
+    {% if close %}<i class="material-icons right">close</i>{% endif %}
+    {% if reveal %}<i class="material-icons right">more_vert</i>{% endif %}
+    {{ value.contents }}
 </{{ tag }}>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}

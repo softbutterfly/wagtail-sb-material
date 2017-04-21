@@ -1,10 +1,10 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 {% load wagtailmaterialize_tags %}
-{% with value.attributes|get_tag|default:materialize_tag as tag %}
-{% with value.attributes|get_id as id %}
-{% with value.attributes|get_classes as classes %}
-{% with value.attributes|get_attributes as atributes %}
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
 <{{ tag }} {{ id }} class="{{ materialize_class }}{% if value.size %} {{ value.size }}{% endif %}{% if value.use_sticky_action %} sticky-action{% endif %}{% if value.use_horizontal_style %} horizontal{% endif %}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
 {% if value.image %}
     <div class="card-image{% if value.reveal_contents %} waves-effect{% endif %}">
@@ -88,7 +88,3 @@
     </div>
 {% endif %}
 </{{ tag }}>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}

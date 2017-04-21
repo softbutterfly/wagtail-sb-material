@@ -1,14 +1,13 @@
 {% load wagtailmaterialize_tags %}
-{% with value.attributes|get_tag|default:materialize_tag as tag %}
-{% with value.attributes|get_id as id %}
-{% with value.attributes|get_classes as classes %}
-{% with value.attributes|get_attributes as atributes %}
-<{{ tag }} {{ id }} class="{{ materialize_class }}{% if value.full_screen %} full-screen{% endif %}{% if value.center_align %} center-align{% endif %}{% if value.middle_align %} valign-wrapper{% endif %}{% if value.full_screen %} full-screen{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
-{% if value.contents %}
-    {{ value.contents }}
-{% endif %}
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
+<{{ tag }}
+    {{ id }}
+    class="{{ materialize_class }}{% if value.full_screen %} full-screen{% endif %}{% if value.center_align %} center-align{% endif %}{% if value.middle_align %} valign-wrapper{% endif %}{% if value.full_screen %} full-screen{% endif %}{% if classes %} {{ classes }}{% endif %}"
+    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% if value.contents %}
+        {{ value.contents }}
+    {% endif %}
 </{{ tag }}>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}

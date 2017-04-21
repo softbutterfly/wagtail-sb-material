@@ -2,17 +2,12 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import StreamField
 
 from wagtail.wagtailsnippets.models import register_snippet
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
-
-from wagtail.wagtailcore.blocks import RawHTMLBlock
-
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -86,12 +81,8 @@ class FooterContents(ContainerStream):
         label = _("Footer contents")
 
 
-class FooterTag(TaggedItemBase):
-    content_object = ParentalKey('wagtailmaterialize.Footer', related_name='tagged_items')
-
-
 @register_snippet
-class Footer(ClusterableModel):
+class Footer(models.Model):
     name = models.CharField(
         _("Name"),
         max_length=32,
@@ -100,17 +91,19 @@ class Footer(ClusterableModel):
 
     attributes = StreamField(
         HTMLAttributes(),
+        verbose_name=_("Attributes"),
         blank=True,
     )
 
     contents = StreamField(
         FooterContents(),
+        verbose_name=_("Contents"),
         blank=True,
     )
 
     copyright_text = models.TextField()
 
-    tags = TaggableManager(through=FooterTag, blank=True)
+    tags = TaggableManager(blank=True)
 
     panels = [
         FieldPanel('name'),

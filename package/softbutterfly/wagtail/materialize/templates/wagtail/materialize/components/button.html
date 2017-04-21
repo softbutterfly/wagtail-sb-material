@@ -1,13 +1,19 @@
 {% load wagtailcore_tags %}
 {% load wagtailmaterialize_tags %}
-<{{ value.attributes|get_tag|default:"a" }}
-    {{ value.attributes|get_id }}
-    class="btn{% if value.flat %} btn-flat{% endif %}{% if value.large %} btn-large{% endif %}{% if value.disabled %} disbled{% endif %} {{ value.attributes|get_classes }}"
+{% get_tag value.attributes as tag %}{% if not tag %}{% make_use_of materialize_tag as tag %}{% endif %}
+{% get_id value.attributes as id %}
+{% get_classes value.attributes as classes %}
+{% get_attributes value.attributes as attributes %}
+<{{ tag }}
+    {{ id }}
+    class="{{ materialize_class }}{% if value.flat %} btn-flat{% endif %}{% if value.large %} btn-large{% endif %}{% if value.disabled %} disbled{% endif %}{% if classes %} {{ classes }}{% endif %}"
     {% if button_to_url %}href="{{ value.link }}"{% endif %}
     {% if button_to_bookmark %}href="#{{ value.link }}"{% endif %}
     {% if button_to_page %}href="{% pageurl value.link %}"{% endif %}
     {% if button_to_image %}href="{{ value.link.url }}"{% endif %}
     {% if button_to_document %}href="{{ value.link.file.url }}"{% endif %}
-    {% for attribute in value.attributes|get_attributes %}{{ attribute }}{% endfor %}>
-    {{ value.text }}
-</{{ value.attributes|get_tag|default:"a" }}>
+    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% if value.contents %}
+        {{ value.contents }}
+    {% endif %}
+</{{ tag }}>

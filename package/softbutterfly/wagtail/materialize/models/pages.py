@@ -42,27 +42,32 @@ from .helpers import Space
 from .helpers import HelpersStream
 
 from .footer import Footer
+from .branding import BrandLogo
+
+from .base import HTMLAttributes
 
 
 class MaterialPage(Page):
-    # -*- Settings fields
-    include_preloader = models.BooleanField(
-        _("Include preloader"),
-        help_text=_("A material style preloader will be included in your page"),
-        default=True,
+    navbar_attributes = StreamField(
+        HTMLAttributes(),
+        verbose_name=_("Navigation bar attributes"),
+        blank=True,
     )
 
-    enable_perfect_scrollbar = models.BooleanField(
-        _("Enable Perfect Scrollbar"),
-        help_text=_("Fancy scroll bar provided by PerfectScrollbar.js will be enabled"),
-        default=True,
-    )
-
-    enable_font_awesome = models.BooleanField(
-        _("Enable FontAwesome"),
-        help_text=_("Enalble aditional icons provided by FontAwesome"),
+    navbar_fixed = models.BooleanField(
+        _("Fixed"),
         default=False,
     )
+
+    brand = models.ForeignKey(
+        BrandLogo,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    body = ''
 
     footer = models.ForeignKey(
         Footer,
@@ -72,7 +77,27 @@ class MaterialPage(Page):
         related_name='+'
     )
 
+    # Settings fields
+    include_preloader = models.BooleanField(
+        _("Include preloader"),
+        help_text=_("A material style preloader will be included in your page"),
+        default=False,
+    )
+
+    enable_perfect_scrollbar = models.BooleanField(
+        _("Enable Perfect Scrollbar"),
+        help_text=_("Fancy scroll bar provided by PerfectScrollbar.js will be enabled"),
+        default=False,
+    )
+
+    enable_font_awesome = models.BooleanField(
+        _("Enable FontAwesome"),
+        help_text=_("Enalble aditional icons provided by FontAwesome"),
+        default=True,
+    )
+
     content_panels = Page.content_panels + [
+        SnippetChooserPanel('brand'),
         SnippetChooserPanel('footer'),
     ]
 
@@ -144,7 +169,16 @@ class MaterialPageStarter(MaterialPage):
     )
 
     content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                SnippetChooserPanel('brand'),
+                StreamFieldPanel('navbar_attributes'),
+                FieldPanel('navbar_fixed'),
+            ],
+            _("Navigation bar")
+        ),
         StreamFieldPanel('body'),
+        SnippetChooserPanel('footer'),
     ]
 
     class Meta:
@@ -229,6 +263,14 @@ class MaterialPageParallax(MaterialPage):
     )
 
     content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                SnippetChooserPanel('brand'),
+                StreamFieldPanel('navbar_attributes'),
+                FieldPanel('navbar_fixed'),
+            ],
+            _("Navigation bar")
+        ),
         StreamFieldPanel('body'),
         SnippetChooserPanel('footer'),
     ]

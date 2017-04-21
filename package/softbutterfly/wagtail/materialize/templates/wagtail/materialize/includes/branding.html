@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailmaterialize_tags %}
+{% get_tag brand.attributes as tag %}{% if not tag %}{% make_use_of "a" as tag %}{% endif %}
+{% get_id brand.attributes as id %}
+{% get_classes brand.attributes as classes %}
+{% get_attributes brand.attributes as attributes %}
+{% make_use_of "brand-logo" as materialize_class %}
+{% block brand.%}
+<{{ tag }}
+    {{ id }}
+    class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}"
+    {% for attribute in atributes %}{{ attribute }}{% endfor %}
+    href="{% pageurl site_root %}">
+    {% if brand.image %}
+        {% image brand.image original %}
+    {% endif %}
+    {% if brand.text %}
+        <span>{{ brand.text|safe }}</span>
+    {% endif %}
+</{{ tag }}>
+{% endblock brand.%}

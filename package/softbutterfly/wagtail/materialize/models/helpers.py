@@ -1320,6 +1320,9 @@ class PromotedIcon(MaterializeComponentBase):
         required=False,
     )
 
+    materialize_tag = 'i'
+    materialize_class = 'material-icons promoted-icon'
+
     class Meta:
         template = "wagtail/materialize/components/promoted-icon.html"
         label = _("Promoted icon")

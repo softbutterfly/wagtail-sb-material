@@ -25,3 +25,17 @@
 .dropdown-content li > span {
     white-space: nowrap;
 }
+
+.brand-logo img {
+    display: block;
+    float: left;
+    height: 56px;
+    width: auto;
+}
+
+@media only screen and (min-width: 601px) {
+    .brand-logo img {
+        height: 64px;
+    }
+}
+
