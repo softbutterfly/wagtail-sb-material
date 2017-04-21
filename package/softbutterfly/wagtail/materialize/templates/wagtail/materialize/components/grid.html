@@ -3,7 +3,7 @@
 {% get_id value.attributes as id %}
 {% get_classes value.attributes as classes %}
 {% get_attributes value.attributes as attributes %}
-<{{ tag }} {{ id }} class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+<{{ tag }} {{ id }} class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}" {% for attribute in attributes %}{{ attribute }}{% endfor %}>
     {% if value.contents %}
         {{ value.contents }}
     {% endif %}

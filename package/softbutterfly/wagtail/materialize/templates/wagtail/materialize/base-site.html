@@ -89,13 +89,13 @@
         {% endif %}
     {% endif %}
     {% get_classes page.navbar_attributes as nav_bar_classes %}
-    <nav class="{% block NAV_BAR_CLASSES %}{{ nav_bar_classes }}{% endblock NAV_BAR_CLASSES %}" role="navigation">
+    <nav class="{% block NAV_BAR_CLASSES %}{{ nav_bar_classes|default:"white" }}{% endblock NAV_BAR_CLASSES %}" role="navigation">
         <div class="container nav-wrapper">
             {% block BRANDING %}
                 {% if page.brand %}
                     {% include 'wagtail/materialize/includes/branding.html' with brand=page.brand %}
                 {% else %}
-                    <a href="{% pageurl site_root %}" class="brand-logo">
+                    <a href="{% pageurl site_root %}" class="brand-logo grey-text text-darken-4">
                         <span class="light">Soft</span><span class="bold">Butterfly</span>
                     </a>
                 {% endif %}
@@ -120,7 +120,9 @@
 {% block PAGE_CONTENT_CLASSES %}{% endblock PAGE_CONTENT_CLASSES %}
 
 {% if page.footer %}
-    {% include 'wagtail/materialize/includes/footer.html' with footer=page.footer %}
+    {% block FOOTER %}
+        {% include 'wagtail/materialize/includes/footer.html' with footer=page.footer %}
+    {% endblock FOOTER %}
 {% else %}
     {% block FOOTER_CLASSES %}grey darken-4 no-margin{% endblock FOOTER_CLASSES %}
 

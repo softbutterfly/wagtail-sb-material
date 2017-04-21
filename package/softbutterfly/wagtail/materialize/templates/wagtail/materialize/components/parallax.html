@@ -8,7 +8,7 @@
 <{{ tag }}
     {{ id }}
     class="{{ materialize_class }}{% if value.full_screen %} full-screen{% endif %}{% if value.center_align %} center-align{% endif %}{% if value.middle_align %} valign-wrapper{% endif %}{% if value.full_screen %} full-screen{% endif %}{% if classes %} {{ classes }}{% endif %}"
-    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% for attribute in attributes %}{{ attribute }}{% endfor %}>
     {% if value.contents %}
         {{ value.contents }}
     {% endif %}

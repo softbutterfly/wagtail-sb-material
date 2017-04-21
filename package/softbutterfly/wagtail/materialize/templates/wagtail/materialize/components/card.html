@@ -5,7 +5,7 @@
 {% get_id value.attributes as id %}
 {% get_classes value.attributes as classes %}
 {% get_attributes value.attributes as attributes %}
-<{{ tag }} {{ id }} class="{{ materialize_class }}{% if value.size %} {{ value.size }}{% endif %}{% if value.use_sticky_action %} sticky-action{% endif %}{% if value.use_horizontal_style %} horizontal{% endif %}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+<{{ tag }} {{ id }} class="{{ materialize_class }}{% if value.size %} {{ value.size }}{% endif %}{% if value.use_sticky_action %} sticky-action{% endif %}{% if value.use_horizontal_style %} horizontal{% endif %}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in attributes %}{{ attribute }}{% endfor %}>
 {% if value.image %}
     <div class="card-image{% if value.reveal_contents %} waves-effect{% endif %}">
         {% if value.reveal_contents %}

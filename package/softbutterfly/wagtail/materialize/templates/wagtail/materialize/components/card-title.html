@@ -3,7 +3,7 @@
 {% get_id value.attributes as id %}
 {% get_classes value.attributes as classes %}
 {% get_attributes value.attributes as attributes %}
-<{{ tag }} {{ id }} class="{{ materialize_class }}{% if use_gradient %} with-gradient{% endif %}{% if reveal %} activator{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+<{{ tag }} {{ id }} class="{{ materialize_class }}{% if use_gradient %} with-gradient{% endif %}{% if reveal %} activator{% endif %}{% if classes %} {{ classes }}{% endif %}" {% for attribute in attributes %}{{ attribute }}{% endfor %}>
     {% if close %}<i class="material-icons right">close</i>{% endif %}
     {% if reveal %}<i class="material-icons right">more_vert</i>{% endif %}
     {{ value.contents }}

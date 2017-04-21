@@ -12,7 +12,7 @@
     {% if action_to_page %}href="{% pageurl value.link %}"{% endif %}
     {% if action_to_image %}href="{{ value.link.url }}"{% endif %}
     {% if action_to_document %}href="{{ value.link.file.url }}"{% endif %}
-    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% for attribute in attributes %}{{ attribute }}{% endfor %}>
     {% if value.contents %}
         {{ value.contents }}
     {% endif %}

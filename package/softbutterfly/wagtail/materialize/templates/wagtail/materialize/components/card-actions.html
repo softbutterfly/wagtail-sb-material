@@ -7,7 +7,7 @@
     <{{ tag }}
         {{ id }}
         class="{{ materialize_class }}{% if value.color %} {{ value.color }}{% endif %}{% if value.text_color %} {{ value.text_color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
-        {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+        {% for attribute in attributes %}{{ attribute }}{% endfor %}>
         {{ value.contents }}
     </{{ tag }}>
 {% endif %}

@@ -10,7 +10,7 @@
 <{{ tag }}
     {{ id }}
     class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}"
-    {% for attribute in atributes %}{{ attribute }}{% endfor %}
+    {% for attribute in attributes %}{{ attribute }}{% endfor %}
     href="{% pageurl site_root %}">
     {% if brand.image %}
         {% image brand.image original %}

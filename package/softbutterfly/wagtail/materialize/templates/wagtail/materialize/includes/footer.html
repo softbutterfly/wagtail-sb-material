@@ -4,15 +4,12 @@
 {% get_classes footer.attributes as classes %}
 {% get_attributes footer.attributes as attributes %}
 {% make_use_of "footer page-footer" as materialize_class %}
-{% block FOOTER %}
 <{{ tag }}
     {{ id }}
     class="{{ materialize_class }}{% if classes %} {{ classes }}{% endif %}"
-    {% for attribute in atributes %}{{ attribute }}{% endfor %}>
+    {% for attribute in attributes %}{{ attribute }}{% endfor %}>
     {% if footer.contents %}
-        {% for block in footer.contents %}
-            {{ block }}
-        {% endfor %}
+        {{ footer.contents }}
     {% endif %}
     <div class="footer-copyright center-align">
         <div class="container">
@@ -20,4 +17,3 @@
         </div>
     </div>
 </{{ tag }}>
-{% endblock FOOTER %}
