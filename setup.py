@@ -5,11 +5,10 @@ from setuptools import find_packages
 PACKAGE_NAME = 'softbutterfly-wagtail-materialize'
 PACKAGE_VERSION = '3.14.17'
 PACKAGE_LIST = find_packages()
-print(PACKAGE_LIST)
 REQUERIMENTS = [
     'django',
     'wagtail',
-    'django-compressor'
+    'django-compressor',
     'django-settings-export'
 ]
 KEYWORDS = [
