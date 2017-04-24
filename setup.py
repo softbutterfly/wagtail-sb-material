@@ -1,34 +1,46 @@
 from setuptools import setup
+from setuptools import find_packages
+
+
+PACKAGE_NAME = 'softbutterfly-wagtail-materialize'
+PACKAGE_VERSION = '3.14.17'
+PACKAGE_LIST = find_packages()
+print(PACKAGE_LIST)
+REQUERIMENTS = [
+    'django',
+    'wagtail',
+    'django-compressor'
+    'django-settings-export'
+]
+KEYWORDS = [
+    'softbutterfly',
+    'django',
+    'wagtail',
+    'materializecss'
+]
 
 
 setup(
-    name='softbutterfly-wagtail-materialize',
-    version='1.0.0',
+    name=PACKAGE_NAME,
+    version=PACKAGE_VERSION,
     description='A drop-in module to build material design sites using wagtail and materializecss.',
     author='SoftButterfly',
     author_email='dev@softbutterfly.io',
     license='BSD',
-    url='https://github.com/softbutterfly/softbutterfly-wagtail-materialize',
-    download_url='https://github.com/softbutterfly/softbutterfly-wagtail-materialize/tarball/1.0.0',
+    url='https://github.com/softbutterfly/{0}'.format(PACKAGE_NAME),
+    download_url='https://github.com/softbutterfly/{0}/tarball/{1}'.format(PACKAGE_NAME, PACKAGE_VERSION),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
+        'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
-        'Framework :: Django',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
     ],
     zip_safe=False,
-    keywords=['softbutterfly', 'django', 'wagtail', 'materializecss'],
-    packages=[
-        'softbutterfly.wagtail.materialize',
-    ],
     include_package_data=True,
-    install_requires=[
-        'django',
-        'wagtail',
-        'django-compressor'
-        'django-settings-export'
-    ],
+    keywords=KEYWORDS,
+    packages=PACKAGE_LIST,
+    install_requires=REQUERIMENTS,
 )
