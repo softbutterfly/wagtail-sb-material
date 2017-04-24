@@ -1,0 +1,36 @@
+/* Padding helpers */
+
+.no-padding-top {
+    padding-top: 0;
+}
+
+.no-padding-right {
+    padding-bottom: 0;
+}
+
+.no-padding-bottom {
+    padding-bottom: 0;
+}
+
+.no-padding-left {
+    padding-right: 0;
+}
+
+
+/* Margin helpers */
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.no-margin-right {
+    margin-bottom: 0;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.no-margin-left {
+    margin-right: 0;
+}

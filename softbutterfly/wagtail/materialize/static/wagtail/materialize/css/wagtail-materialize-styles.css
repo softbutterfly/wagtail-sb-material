@@ -1,0 +1,103 @@
+/* General settings */
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    *,
+    *:focus {
+        outline: none;
+    }
+
+/* Page preloader */
+    .page-wrapper.is-loading {
+        overflow: hidden;
+    }
+
+    .page-wrapper.is-loading .page-preloader {
+        opacity: 1;
+    }
+
+    .page-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1000000;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .page-preloader .preloader-wrapper-external {
+        position: fixed;
+        pointer-events: none;
+        user-select: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .page-preloader .preloader-wrapper-external .preloader-wrapper.big {
+        height: 128px;
+        width: 128px;
+    }
+
+/* Page content */
+    .page-wrapper.is-loading .page-content {
+        margin-top: 100vh;
+    }
+
+    .page-content {
+        margin-top: 0;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .page-content main {
+        flex: 1 0 auto;
+        position: relative;
+    }
+
+/* Promoted icon */
+.promoted-icon {
+    display: block;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    line-height: 1;
+}
+
+/* Title inside card image */
+.card .card-image .card-title {
+    width: 100%;
+}
+
+.card .card-image .card-title.with-gradient {
+    background: transparent; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(transparent, #212121); /* For Safari 5.1 to 6.0 */
+    background: -moz-linear-gradient(transparent, #212121); /* For Firefox 3.6 to 15 */
+    background: -o-linear-gradient(transparent, #212121); /* For Opera 11.1 to 12.0 */
+    background: linear-gradient(transparent, #212121); /* Standard syntax */
+}
+
+/* Parallax */
+.parallax-container {
+    height: 400px;
+}
+
+.parallax-container.full-screen {
+    height: 100vh;
+}
+
+/* Section */
+.section{
+    width: 100%;
+}
