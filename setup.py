@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 
 PACKAGE_NAME = 'softbutterfly-wagtail-materialize'
-PACKAGE_VERSION = '3.14.17'
+PACKAGE_VERSION = '3.14.18'
 PACKAGE_LIST = find_packages()
 REQUERIMENTS = [
     'django',
