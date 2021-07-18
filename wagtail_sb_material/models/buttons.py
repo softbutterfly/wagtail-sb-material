@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.blocks import BooleanBlock
-from wagtail.wagtailcore.blocks import CharBlock
-from wagtail.wagtailcore.blocks import PageChooserBlock
-from wagtail.wagtailcore.blocks import RawHTMLBlock
-from wagtail.wagtailcore.blocks import URLBlock
+from wagtail.core.blocks import BooleanBlock
+from wagtail.core.blocks import CharBlock
+from wagtail.core.blocks import PageChooserBlock
+from wagtail.core.blocks import RawHTMLBlock
+from wagtail.core.blocks import URLBlock
 
-from wagtail.wagtaildocs.blocks import DocumentChooserBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 from .base import MaterializeComponentBase
 from .base import MaterializeStreamBase

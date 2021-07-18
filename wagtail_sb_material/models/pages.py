@@ -2,14 +2,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Page
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Page
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
-from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel
 
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from .base import MaterializeStreamBase
 from .cards import Card

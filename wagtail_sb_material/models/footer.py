@@ -2,12 +2,12 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.core.fields import StreamField
 
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.snippets.models import register_snippet
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel

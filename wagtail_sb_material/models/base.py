@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.blocks import CharBlock
-from wagtail.wagtailcore.blocks import StructBlock
-from wagtail.wagtailcore.blocks import StreamBlock
+from wagtail.core.blocks import CharBlock
+from wagtail.core.blocks import StructBlock
+from wagtail.core.blocks import StreamBlock
 
 
 class MaterializeComponentMixin(object):

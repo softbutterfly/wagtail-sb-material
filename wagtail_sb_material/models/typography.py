@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.blocks import RawHTMLBlock
+from wagtail.core.blocks import RawHTMLBlock
 
 from .base import MaterializeComponentBase
 from .base import MaterializeStreamBase

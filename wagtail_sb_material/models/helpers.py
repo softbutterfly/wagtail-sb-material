@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.blocks import StructBlock
-from wagtail.wagtailcore.blocks import StreamBlock
-from wagtail.wagtailcore.blocks import ChoiceBlock
+from wagtail.core.blocks import StructBlock
+from wagtail.core.blocks import StreamBlock
+from wagtail.core.blocks import ChoiceBlock
 
 from .base import MaterializeComponentBase
 
